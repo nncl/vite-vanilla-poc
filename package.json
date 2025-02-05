@@ -2,22 +2,27 @@
   "name": "poc-vite",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "compression": "^1.7.5",
+    "express": "^4.21.2",
     "sass": "^1.83.4",
     "typescript": "^5.7.3",
     "vite": "^6.1.0"
   },
   "devDependencies": {
+    "critical": "^7.2.1",
     "cssnano": "^7.0.6",
     "terser": "^5.38.0"
   }
