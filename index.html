@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A fast and SEO-friendly website using Vite, SCSS, and TypeScript.">
+  <title>SEO & Performance Optimized</title>
+
+  <!-- Preload important resources -->
+  <link rel="preload" href="src/styles/style.scss" as="style">
+  <link rel="stylesheet" href="src/styles/style.scss">
+  
+  <!-- Preconnect for faster DNS resolution -->
+  <link rel="preconnect" href="https://example.com">
+
+  <!-- Load script asynchronously -->
+  <script type="module" src="/src/main.ts" async></script>
+</head>
+<body>
+  <app-header></app-header> <!-- ✅ Using the Web Component -->
+
+  <main>
+    <img src="https://via.placeholder.com/600" alt="Placeholder Image" loading="lazy">
+  </main>
+</body>
+</html>
+
