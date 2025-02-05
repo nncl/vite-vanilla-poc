@@ -11,10 +11,10 @@ const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Enable Gzip Compression
+// ✅ Enable Gzip Compression for better performance
 app.use(compression());
 
-// ✅ Serve static files from 'dist' and set caching headers
+// ✅ Serve static files from 'dist' with caching headers
 app.use(express.static(path.join(__dirname, "dist"), {
   maxAge: "1y",
   etag: false
@@ -28,7 +28,7 @@ app.get("/:page", (req, res, next) => {
   if (fs.existsSync(filePath)) {
     res.sendFile(filePath);
   } else {
-    next(); // Pass to 404 handler
+    next(); // Pass to redirect
   }
 });
 
@@ -41,14 +41,9 @@ app.get("/api/feat", (req, res) => {
   });
 });
 
-// ✅ Catch-all 404 handler → Redirect to `/` but keep 404 status
+// ✅ Redirect all unknown routes to `/` with a 302 status
 app.use((req, res) => {
-  res.status(404).send(`
-    <script>
-      console.warn('404 Not Found: Redirecting to home');
-      window.location.replace("/");
-    </script>
-  `);
+  res.redirect("/");
 });
 
 // ✅ Start the server
