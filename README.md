@@ -1,193 +1,124 @@
-# 🚀 SEO & Performance-Optimized Web Components Project
+# 🚀 Vite + Express Server with Docker
 
-## 📌 Overview
-This project is a **high-performance, SEO-friendly website** built with:
-- **Vite** for fast builds and hot module replacement (HMR).
-- **SCSS** for maintainable styling.
-- **TypeScript** for better structured JavaScript.
-- **Web Components** to create reusable HTML elements without frameworks.
-- **Terser & CSSNano** for JavaScript and CSS minification.
+This project is a high-performance, SEO-optimized web application built using **Vite**, **SCSS**, **TypeScript**, and an **Express.js** server. It supports clean URLs, dynamic page loading, API endpoints, and is fully containerized with Docker.
 
 ---
 
-## 📂 Project Structure
+## 📌 Features
+- ✅ **Vite for fast builds & HMR (Hot Module Replacement)**
+- ✅ **Express.js for server-side routing & API handling**
+- ✅ **SCSS for modular styling**
+- ✅ **Clean URLs (`/about` instead of `/about.html`)**
+- ✅ **Gzip compression for better performance**
+- ✅ **Dynamic `feat` API endpoint (`/api/feat`)**
+- ✅ **404 routes redirect to `/` with a `302` status**
+- ✅ **Docker support for containerized deployment**
+
+---
+
+## 🚀 Getting Started
+
+### **1️⃣ Install Dependencies**
+```sh
+npm install
+```
+
+### **2️⃣ Run in Development Mode (Hot Reloading)**
+```sh
+npm run dev
+```
+✅ The app will be available at **[http://localhost:5173](http://localhost:5173)**
+
+---
+
+## 📦 Building for Production
+
+### **1️⃣ Build the Application**
+```sh
+npm run build
+```
+
+### **2️⃣ Start the Express Server**
+```sh
+npm start
+```
+✅ The app will be available at **[http://localhost:3000](http://localhost:3000)**
+
+---
+
+## 🐳 Running with Docker
+
+### **1️⃣ Build the Docker Image**
+```sh
+docker build -t my-node-app .
+```
+
+### **2️⃣ Run the Container**
+```sh
+docker run -p 3000:3000 my-node-app
+```
+✅ The app will be available at **[http://localhost:3000](http://localhost:3000)**
+
+### **3️⃣ Run on a Custom Port**
+You can change the external port when running the container:
+```sh
+docker run -p 8080:3000 my-node-app
+```
+✅ The app will now be available at **[http://localhost:8080](http://localhost:8080)**
+
+Or set a different **internal port** using an environment variable:
+```sh
+docker run -e PORT=5000 -p 5000:5000 my-node-app
+```
+✅ Now the server runs on **port 5000** inside Docker, accessible at **[http://localhost:5000](http://localhost:5000)**
+
+---
+
+## 🔥 API Endpoints
+
+### **GET `/api/feat`** - Returns feature data
+```sh
+curl http://localhost:3000/api/feat
+```
+✅ Response:
+```json
+{
+  "feature": "Example Feature",
+  "description": "This is an example feature endpoint.",
+  "status": "active"
+}
+```
+
+---
+
+## ❌ Handling Non-Existent Routes
+- Any unknown route **automatically redirects to `/` with a `302` status**.
+- Example: Navigating to `/random-page` will **redirect to `/`**.
+
+---
+
+## 🛠 Project Structure
 ```
 seo-performance-site/
-│── src/
-│   ├── components/
-│   │   ├── Header.ts
-│   ├── styles/
-│   │   ├── style.scss
-│   ├── main.ts
-│── index.html
-│── tsconfig.json
-│── vite.config.ts
-│── package.json
-│── .gitignore
+│── src/                     # Frontend source code
+│   ├── components/          # Web Components
+│   ├── styles/              # SCSS styles
+│   ├── pages/               # Page-specific JS
+│   ├── main.ts              # Main TypeScript entry
+│── index.html               # Home page
+│── about.html               # About page
+│── tsconfig.json            # TypeScript config
+│── vite.config.ts           # Vite configuration
+│── server.js                # Express.js server
+│── package.json             # Project dependencies
+│── Dockerfile               # Docker container setup
+│── .gitignore               # Ignored files
 ```
 
 ---
 
-## 🛠️ Setup & Installation
-1. **Clone the repository**
-   ```sh
-   git clone https://github.com/your-repo/seo-performance-site.git
-   cd seo-performance-site
-   ```
+## 📄 License
+This project is licensed under **MIT License**.
 
-2. **Install dependencies**
-   ```sh
-   npm install
-   ```
-
-3. **Run the development server**
-   ```sh
-   npm run dev
-   ```
-   Vite will start the server at **http://localhost:5173**.
-
-4. **Build for production**
-   ```sh
-   npm run build
-   ```
-
----
-
-## 📄 File Breakdown
-### **1️⃣ index.html**
-Contains the **HTML structure**, optimized for SEO and performance.
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A fast and SEO-friendly website using Vite, SCSS, and TypeScript.">
-  <title>SEO & Performance Optimized</title>
-</head>
-<body>
-  <app-header></app-header>
-  <main>
-    <p>Welcome to my high-performance website!</p>
-  </main>
-  <script type="module" src="/src/main.ts"></script>
-</body>
-</html>
-```
-
-### **2️⃣ Web Component: Header.ts**
-Reusable **Web Component** for the site header.
-```typescript
-class AppHeader extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
-      <header>
-        <h1>🚀 My Website</h1>
-        <nav>
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
-        </nav>
-      </header>
-    `;
-  }
-}
-
-customElements.define("app-header", AppHeader);
-```
-
-### **3️⃣ main.ts**
-Registers **Web Components** and loads global scripts.
-```typescript
-import "./components/Header";
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("🚀 Web Components initialized!");
-});
-```
-
-### **4️⃣ SCSS Styles: style.scss**
-Organized **SCSS styles** with variables.
-```scss
-$primary-color: #0073e6;
-$font-stack: "Arial", sans-serif;
-
-body {
-  font-family: $font-stack;
-  color: $primary-color;
-  background: #f5f5f5;
-}
-```
-
-### **5️⃣ Vite Configuration: vite.config.ts**
-Configures Vite for **aliasing, SCSS processing, and minification**.
-```typescript
-import { defineConfig } from 'vite';
-import path from 'path';
-import terser from 'terser';
-
-export default defineConfig({
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src')
-    }
-  },
-  build: {
-    outDir: "dist",
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      },
-      format: {
-        comments: false
-      }
-    }
-  },
-  css: {
-    postcss: {
-      plugins: [
-        require("cssnano")({ preset: "default" })
-      ]
-    }
-  }
-});
-```
-
----
-
-## 📦 Dependencies
-| Package | Purpose |
-|---------|---------|
-| **vite** | Fast bundler & dev server |
-| **typescript** | Type safety & better development experience |
-| **sass** | Preprocessor for styles |
-| **terser** | JavaScript minification |
-| **cssnano** | CSS minification |
-
----
-
-## ⚡ Optimization Features
-✅ **Web Components** for reusability without frameworks.  
-✅ **Terser & CSSNano** for minified assets.  
-✅ **Preconnect & Lazy Loading** for SEO & speed.  
-✅ **Vite HMR** for fast development.  
-✅ **SCSS Variables** for maintainable styles.  
-
----
-
-## 🚀 Next Steps
-- **Deploy** to **Vercel, Netlify, or Cloudflare Pages**.
-- **Add PWA support** for offline caching.
-- **Integrate SEO best practices** like structured data.
-
----
-
-## 📜 License
-MIT License. Feel free to use and modify! 🎉
-
----
-
-Happy coding! 🚀💻
-
+🚀 **Now your project is fully optimized and ready for deployment!** Let me know if you need any refinements! 😊
 
