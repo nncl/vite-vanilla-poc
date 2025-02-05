@@ -1,3 +1,6 @@
+import "@/styles/style.scss"; // ✅ Keep this to ensure styles are bundled
+
+
 class AppHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -6,7 +9,6 @@ class AppHeader extends HTMLElement {
         <nav>
           <a href="/">Home</a>
           <a href="/about">About</a>
-          <a href="/contact">Contact</a>
         </nav>
       </header>
     `;
