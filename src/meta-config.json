@@ -1,0 +1,17 @@
+{
+    "index.html": {
+      "title": "Home - Your Company",
+      "description": "Welcome to Your Company, where we provide the best services.",
+      "keywords": "company, services, best solutions",
+      "image": "/assets/og-image.jpg",
+      "url": "https://yourwebsite.com/"
+    },
+    "about.html": {
+      "title": "About Us - Your Company",
+      "description": "Learn more about our company and services.",
+      "keywords": "company, about us, services",
+      "image": "/assets/about-image.jpg",
+      "url": "https://yourwebsite.com/about.html"
+    }
+  }
+  
